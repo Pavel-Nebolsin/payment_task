@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pydantic>=2
+pydantic-settings
+sqlalchemy[asyncio]>=2
+asyncpg
+alembic
+faststream[rabbit,cli]
+httpx
+tenacity
