@@ -1,3 +1,4 @@
+import uuid
 from datetime import UTC, datetime
 from decimal import Decimal
 
@@ -70,3 +71,8 @@ async def create_payment(
         return PaymentResult(payment=existing, created=False)
 
     return PaymentResult(payment=payment, created=True)
+
+
+async def get_payment(session: AsyncSession, payment_id: uuid.UUID) -> Payment | None:
+    """Возвращает платёж по id или None, если не найден."""
+    return await payment_repo.get_by_id(session, payment_id)

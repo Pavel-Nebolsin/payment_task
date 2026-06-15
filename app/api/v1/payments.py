@@ -4,7 +4,6 @@ from fastapi import APIRouter, Depends, Header, HTTPException, Response, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_db, require_api_key
-from app.repositories import payment as payment_repo
 from app.schemas.payment import PaymentCreateRequest, PaymentCreateResponse, PaymentDetailResponse
 from app.services import payment_service
 
@@ -50,7 +49,7 @@ async def get_payment(
     payment_id: uuid.UUID,
     session: AsyncSession = Depends(get_db),
 ) -> PaymentDetailResponse:
-    payment = await payment_repo.get_by_id(session, payment_id)
+    payment = await payment_service.get_payment(session, payment_id)
     if payment is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Payment not found")
 
