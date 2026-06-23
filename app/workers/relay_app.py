@@ -14,6 +14,7 @@ from faststream import FastStream
 from app.messaging.broker import broker
 from app.messaging.relay import relay_loop
 
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastStream(broker)

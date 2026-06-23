@@ -8,11 +8,15 @@ FastStream-приложение consumer-сервиса.
 долетали до DLQ.
 """
 
+import logging
+
 from faststream import FastStream
 
 # Импорт регистрирует подписчиков payments.new и payments.dead на broker
 from app.messaging import consumer  # noqa: F401
 from app.messaging.broker import broker, payments_dead_queue, payments_dlx_exchange
+
+logging.basicConfig(level=logging.INFO)
 
 app = FastStream(broker)
 
