@@ -14,7 +14,6 @@ class Settings(BaseSettings):
     outbox_batch_size: int = 50
 
     webhook_timeout: float = 10.0
-    webhook_hmac_secret: str = "optional-secret"
 
 
 settings = Settings()
